@@ -1,0 +1,357 @@
+﻿<Window x:Class="CajaFuerteV1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CajaFuerteV1"
+        mc:Ignorable="d"
+        Title="Caja Fuerte" Width="1250" Height="1070"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResizeWithGrip"
+        WindowStyle="SingleBorderWindow"
+        Background="Transparent"
+        AllowsTransparency="False"
+        >
+
+    <Border CornerRadius="22">
+        <Border.Background>
+            <ImageBrush ImageSource = "\Recursos\Dinero.jpg"
+                        Stretch="none"></ImageBrush>
+        </Border.Background>
+
+        <Border CornerRadius="20"
+            BorderThickness="3"
+            Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#212529" Offset="0"></GradientStop>
+                    <GradientStop Color="#343a40" Offset="0.25"></GradientStop>
+                    <GradientStop Color="#495057" Offset="0.50"></GradientStop>
+                    <GradientStop Color="#6c757d" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#212529" Offset="0"></GradientStop>
+                    <GradientStop Color="#343a40" Offset="0.25"></GradientStop>
+                    <GradientStop Color="#495057" Offset="0.50"></GradientStop>
+                    <GradientStop Color="#6c757d" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <TabControl Margin="20"
+                        BorderThickness="2.2"
+                        BorderBrush="LightGray"
+                        Background="Transparent"
+                        FontFamily="Cascadia Code SemiBold" FontSize="14"
+                        >
+                <TabControl.Resources>
+                    <Style TargetType="TabItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="TabItem">
+                                    <Border Name="Border" Width="150" Height="30" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="10,10,0,0" Margin="2,0">
+                                        <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="False">
+                                            <Setter TargetName="Border" Property="Background" Value="lightgray" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+                <!--  
+    <TabControl.Background>
+        <ImageBrush ImageSource="/Recursos/gradient (1).png" />
+    </TabControl.Background> 
+    -->
+
+                <TabItem Header="Login" Name="Tabs">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"/>
+
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+
+
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Column="0" 
+                               Source="Recursos/Recurso 2@30x.png" 
+                               Margin="10,10,10,10"
+                               Width="450"
+                               Height="450"
+                               HorizontalAlignment="Center"></Image>
+
+                        <Border Grid.Column="1"
+                                CornerRadius="20"
+                                Background="#FF988989"
+                                Opacity="1"
+                                Margin="10"
+                                Height="550"
+                                Width="400"
+                                >
+
+                            <StackPanel
+                                VerticalAlignment="Center"
+                                Margin="20">
+
+                                <Label 
+                                    Content="Autenticación"
+                                    FontFamily="Cascadia Code SemiBold" FontSize="28"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,0,30" Foreground="White"
+                                    >
+                                </Label>
+
+                                <Image 
+                                    Width="150" Height="150" 
+                                    Source="/Recursos/IconoUsuario.png" Margin="0,0,0,20"
+                                    >
+                                </Image>
+
+                                <TextBox GotFocus="UsuarioTxt_GotFocus"  Width="200" Height="20" Margin="0,0,0,10" Name="usuarioTxt">Usuario</TextBox>
+                                <PasswordBox Width="200" Height="20" Margin="0,0,0,10" Name="contraseñaTxt" PreviewKeyDown="contraseñaTxt_PreviewKeyDown" PasswordChar="●"></PasswordBox>
+
+
+                                <Button Grid.Row="0"
+                                        Width="200" Height="30" 
+                                        Margin="0,20,0,10"
+                                        VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                        Click="iniciarSesionBtn">Iniciar sesion</Button>
+                            </StackPanel>
+
+                        </Border>
+                        <Button Grid.Column="2" 
+                                Grid.Row="1"
+                                Content="Exportar" 
+                                Width="120" Height="30" 
+                                Margin="10" 
+                                HorizontalAlignment="Right" 
+                                VerticalAlignment="Top" 
+                                Click="btnExportatClick" />
+
+
+                    </Grid>
+
+                </TabItem>
+
+
+                <TabItem Header="Retirar">
+                    <!--Retirar -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70*"></ColumnDefinition>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"></ColumnDefinition>
+                            <ColumnDefinition Width="50*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.5*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="3*"></RowDefinition>
+
+                        </Grid.RowDefinitions>
+
+                        <GroupBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Margin="15,15,15,15">
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.5*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#fffef9">Denominacion [ARS]</Label>
+                                <TextBlock Grid.Row="1" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$100</TextBlock>
+                                <TextBlock Grid.Row="2" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$200</TextBlock>
+                                <TextBlock Grid.Row="3" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$500</TextBlock>
+                                <TextBlock Grid.Row="4" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$1.000</TextBlock>
+                                <TextBlock Grid.Row="5" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$2.000</TextBlock>
+                                <TextBlock Grid.Row="6" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$10.000</TextBlock>
+                                <TextBlock Grid.Row="7" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$20.000</TextBlock>
+
+                                <Label Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#fffef9">Unidad</Label>
+                                <Label Name="lblRetUnid100" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblRetUnid200" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblRetUnid500" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblRetUnid1000" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblRetUnid2000" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblRetUnid10000" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblRetUnid20000" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+
+                                <Label Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#fffef9">Unidades a retirar</Label>
+                                <TextBox Name="txtBoxRetUnid100" Text="0" PreviewTextInput="validarNumeroEntero" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Width="40" Height="20" Margin="0,1,0,1"/>
+                                <TextBox Name="txtBoxRetUnid200" Text="0" PreviewTextInput="validarNumeroEntero" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Name="txtBoxRetUnid500" Text="0" PreviewTextInput="validarNumeroEntero" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Name="txtBoxRetUnid1000" Text="0" PreviewTextInput="validarNumeroEntero" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Name="txtBoxRetUnid2000" Text="0" PreviewTextInput="validarNumeroEntero" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Name="txtBoxRetUnid10000" Text="0" PreviewTextInput="validarNumeroEntero" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Name="txtBoxRetUnid20000" Text="0" PreviewTextInput="validarNumeroEntero" HorizontalContentAlignment="Center" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <Button Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3" Width="200" Height="25" Click="retirarBtnClick">Retirar</Button>
+
+                                <Label Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#fffef9">Operaciones recientes</Label>
+
+                                <DataGrid x:Name="DataGridOperaciones"  Width="650" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="7" Margin="15,0,15,0" d:ItemsSource="{d:SampleData ItemCount=5}">
+
+                                    <DataGrid.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Style>
+                                    </DataGrid.CellStyle>
+                                </DataGrid>
+
+                                <Button Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="3" Width="200" Height="25" x:Name="btnBorrarRet" Click="borrarBtnClick" IsEnabled="False">Borrar</Button>
+                            </Grid>
+
+                        </GroupBox>
+
+
+                        <Label Grid.ColumnSpan="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="36" FontFamily="Verdana" Grid.Column="1" Margin="1,0,0,0" Foreground="#FFEBFB0D">Retiro</Label>
+                        <Image Source="/Recursos/Recurso 4@30x.png" Grid.Column="0" Width="60" Height="60" Margin="50,0,0,0" HorizontalAlignment="Left"></Image>
+                        <Image Source="/Recursos/cerrar-sesion.png" Grid.Column="3" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,15,0" MouseUp="cerrarSesionIconClick"></Image>
+
+                        <Label Grid.Row="2" Grid.Column="0" Margin="60,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Verdana" FontSize="26" Content="Saldo Total" Foreground="#fffef9"/>
+                        <Label Name="lblRetSaldoTotal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" FontFamily="Verdana" FontSize="26" FontWeight="Bold" Foreground="#FF247B1C" Content="XXXXXX" ></Label>
+
+
+
+                    </Grid>
+                </TabItem>
+
+
+
+
+                <TabItem Header="Depositar">
+                    <!-- Depositar -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70*"></ColumnDefinition>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="100*"></ColumnDefinition>
+                            <ColumnDefinition Width="50*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="0.5*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="3*"></RowDefinition>
+
+                        </Grid.RowDefinitions>
+
+                        <GroupBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4" Margin="15,15,15,15">
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
+                                    <RowDefinition Height="0.5*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#fffef9">Denominacion [ARS]</Label>
+                                <TextBlock Grid.Row="1" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$100</TextBlock>
+                                <TextBlock Grid.Row="2" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$200</TextBlock>
+                                <TextBlock Grid.Row="3" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$500</TextBlock>
+                                <TextBlock Grid.Row="4" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$1.000</TextBlock>
+                                <TextBlock Grid.Row="5" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$2.000</TextBlock>
+                                <TextBlock Grid.Row="6" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$10.000</TextBlock>
+                                <TextBlock Grid.Row="7" HorizontalAlignment="Center" Foreground="#FFEBFB0D" VerticalAlignment="Center">$20.000</TextBlock>
+
+                                <Label Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#fffef9">Unidad</Label>
+                                <Label Name="lblDepUnid100" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblDepUnid200" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblDepUnid500" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblDepUnid1000" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblDepUnid2000" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblDepUnid10000" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+                                <Label Name="lblDepUnid20000" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Content="XXX" Foreground="#FFEBFB0D"></Label>
+
+                                <Label Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#fffef9">Unidades a depositar</Label>
+                                <TextBox Text="0" Name="txtBoxDepUnid100" PreviewTextInput="validarNumeroEntero" Grid.Column="2" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Text="0" Name="txtBoxDepUnid200" PreviewTextInput="validarNumeroEntero" Grid.Column="2" Grid.Row="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Text="0" Name="txtBoxDepUnid500" PreviewTextInput="validarNumeroEntero" Grid.Column="2" Grid.Row="3" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Text="0" Name="txtBoxDepUnid1000" PreviewTextInput="validarNumeroEntero" Grid.Column="2" Grid.Row="4" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Text="0" Name="txtBoxDepUnid2000" PreviewTextInput="validarNumeroEntero" Grid.Column="2" Grid.Row="5" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Text="0" Name="txtBoxDepUnid10000" PreviewTextInput="validarNumeroEntero" Grid.Column="2" Grid.Row="6" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <TextBox Text="0" Name="txtBoxDepUnid20000" PreviewTextInput="validarNumeroEntero" Grid.Column="2" Grid.Row="7" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="40" Height="20"></TextBox>
+                                <Button Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="3" Width="200" Height="25" Click="depositarBtnClick">Depositar</Button>
+
+                                <Label Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#fffef9">Operaciones recientes</Label>
+
+                                <DataGrid x:Name="DataGridOperacionesDep"  Width="650" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="6" Grid.RowSpan="7" Margin="15,0,15,0" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                    <DataGrid.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="Background" Value="LightGray"/>
+                                            <Setter Property="Foreground" Value="Black"/>
+                                        </Style>
+                                    </DataGrid.CellStyle>
+                                </DataGrid>
+
+                                <Button Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="3" Width="200" Height="25" x:Name="btnBorrarDep" Click="borrarBtnClick" IsEnabled="False">Borrar</Button>
+                            </Grid>
+
+                        </GroupBox>
+
+
+                        <Label Grid.ColumnSpan="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="36" FontFamily="Verdana" Grid.Column="1" Margin="1,0,0,0" Foreground="#FFEBFB0D">Depósito</Label>
+                        <Image Source="/Recursos/Recurso 4@30x.png" Grid.Column="0" Width="60" Height="60" Margin="50,0,0,0" HorizontalAlignment="Left"></Image>
+                        <Image Source="/Recursos/cerrar-sesion.png" Grid.Column="3" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,15,0" MouseUp="cerrarSesionIconClick"></Image>
+
+                        <Label Grid.Row="2" Grid.Column="0" Margin="60,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Verdana" FontSize="26" Content="Saldo Total" Foreground="#fffef9"/>
+                        <Label Name="lblDepSaldoTotal" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" FontFamily="Verdana" FontSize="26" FontWeight="Bold" Foreground="#FF247B1C" Content="XXXXXX" ></Label>
+
+                    </Grid>
+                </TabItem>
+
+            </TabControl>
+        </Border>
+    </Border>
+</Window>
